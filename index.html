@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazing Slim Caffè Macchiato — Premium Coffee Ritual</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            espresso: { DEFAULT:'#1A0A00', dark:'#0D0500', mid:'#2D1200', light:'#4A1E0A' },
+            cream:    { DEFAULT:'#FDF6E3', dark:'#F5EDD8', deeper:'#EDE0C4' },
+            gold:     { DEFAULT:'#C8963C', light:'#E8B85C', dark:'#A87A2A', pale:'#F5E6C8' },
+            mocha:    { DEFAULT:'#6B3A2A', light:'#8B5A42', dark:'#4A2018' },
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            body:    ['"DM Sans"', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: #FDF6E3; color: #1A0A00; }
+
+    /* Animations */
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+    @keyframes pulse-ring {
+      0%,100% { box-shadow: 0 0 0 0   rgba(200,150,60,.45); }
+      50%     { box-shadow: 0 0 0 14px rgba(200,150,60,0);   }
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0);   }
+      50%     { transform: translateY(-9px); }
+    }
+    @keyframes scrim {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(36px); }
+      to   { opacity:1; transform:translateY(0);    }
+    }
+
+    /* Shimmer gold text */
+    .shimmer-text {
+      background: linear-gradient(90deg,#C8963C,#F5E6C8,#E8B85C,#C8963C);
+      background-size: 250% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3.5s linear infinite;
+    }
+
+    /* Scarcity bar shimmer */
+    .scarcity-bar::after {
+      content:'';
+      position:absolute; inset:0;
+      background: linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+      background-size: 200% auto;
+      animation: scrim 2.2s linear infinite;
+    }
+
+    /* Gold CTA button */
+    .btn-gold {
+      background: linear-gradient(135deg,#C8963C 0%,#E8B85C 50%,#C8963C 100%);
+      background-size: 200% auto;
+      color: #1A0A00;
+      font-weight: 700;
+      border-radius: 9999px;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+      transition: background-position .4s ease, transform .2s ease, box-shadow .2s ease;
+      animation: pulse-ring 2.8s ease-in-out infinite;
+      text-decoration: none;
+    }
+    .btn-gold:hover {
+      background-position: right center;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(200,150,60,.55);
+    }
+
+    /* Floating product card */
+    .product-float { animation: float 4s ease-in-out infinite; }
+    .badge-float   { animation: float 3s ease-in-out infinite; }
+
+    /* Scroll fade-in */
+    .reveal { opacity:0; transform:translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity:1; transform:translateY(0); }
+
+    /* FAQ accordion */
+    .faq-body { max-height:0; overflow:hidden; transition: max-height .38s ease, padding .38s ease; }
+    .faq-body.open { max-height:400px; }
+    .faq-icon { transition: transform .35s ease; display:inline-block; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    /* Pricing featured glow */
+    .pricing-featured-card { box-shadow: 0 0 48px rgba(200,150,60,.22); }
+
+    /* Sticky mobile CTA */
+    #sticky-bar { transform:translateY(110%); transition:transform .4s cubic-bezier(.4,0,.2,1); }
+    #sticky-bar.show { transform:translateY(0); }
+
+    /* Play button */
+    .play-btn {
+      width:72px; height:72px; border-radius:50%;
+      background: rgba(200,150,60,.92);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer;
+      transition: transform .2s ease, background .2s ease;
+      animation: pulse-ring 2.2s ease-in-out infinite;
+    }
+    .play-btn:hover { transform:scale(1.1); background:#C8963C; }
+
+    /* Step connector */
+    .step-line {
+      position:absolute; top:40px; left:calc(50% + 40px); right:calc(-50% + 40px);
+      height:2px;
+      background: linear-gradient(90deg,#C8963C,#E8B85C);
+    }
+
+    /* Rating bar fill */
+    .bar-fill { height:100%; border-radius:9999px; background:#C8963C; }
+
+    /* Benefit card top accent */
+    .benefit-accent {
+      width:48px; height:4px; border-radius:9999px;
+      background: linear-gradient(90deg,#C8963C,#E8B85C);
+      transition: width .3s ease;
+    }
+    .benefit-card:hover .benefit-accent { width:70px; }
+  </style>
+</head>
+<body class="font-body">
+
+<!-- ═══════════════════════════════════════════ ANNOUNCEMENT BAR -->
+<div class="bg-espresso-dark text-cream text-center py-2.5 px-4 text-sm font-medium">
+  🎉 <strong>Bundle &amp; Save on Shipping:</strong> Order 6 Boxes and get FREE delivery —&nbsp;
+  <a href="#pricing" class="text-gold-light underline font-bold hover:text-gold transition-colors">See Bundles&nbsp;→</a>
+</div>
+
+<!-- ═══════════════════════════════════════════ SCARCITY BAR -->
+<div class="relative scarcity-bar overflow-hidden bg-espresso-mid text-cream text-center py-1.5 px-4 text-xs">
+  <span class="relative z-10">⚡ <strong class="text-gold-light">Only 47 boxes remaining</strong> — stock running low. Don't miss out.</span>
+</div>
+
+<!-- ═══════════════════════════════════════════ HERO -->
+<section class="relative overflow-hidden bg-gradient-to-br from-espresso-dark via-espresso to-espresso-mid text-cream">
+  <!-- Radial glow overlays -->
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 60% 60% at 80% 20%,rgba(200,150,60,.12) 0%,transparent 70%)"></div>
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 50% 80% at 10% 90%,rgba(200,150,60,.08) 0%,transparent 60%)"></div>
+
+  <div class="max-w-6xl mx-auto px-4 py-16 lg:py-24">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- ── Copy ── -->
+      <div class="order-2 lg:order-1">
+        <!-- Social proof chip -->
+        <div class="inline-flex items-center gap-2 mb-6 rounded-full border border-gold/30 bg-white/10 px-4 py-2 backdrop-blur-sm">
+          <span class="text-gold text-sm">★★★★★</span>
+          <span class="text-cream/80 text-sm font-medium">Loved by 2,400+ coffee lovers</span>
+        </div>
+
+        <h1 class="font-display text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.12] mb-5">
+          Your Morning Just Got a<br/>
+          <span class="shimmer-text">Whole Lot Richer</span>
+        </h1>
+
+        <p class="text-cream/75 text-lg lg:text-xl leading-relaxed mb-8 max-w-lg">
+          Amazing Slim Caffè Macchiato delivers a <strong class="text-cream">barista-quality coffee experience</strong>
+          in 60 seconds flat — crafted for busy women who deserve better mornings without the hassle.
+        </p>
+
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center gap-3 text-cream/85"><span class="text-gold font-bold text-lg">✓</span> Smooth, bold Arabica blend — zero bitterness</li>
+          <li class="flex items-center gap-3 text-cream/85"><span class="text-gold font-bold text-lg">✓</span> Ready in 60 seconds — no machine, no mess</li>
+          <li class="flex items-center gap-3 text-cream/85"><span class="text-gold font-bold text-lg">✓</span> Portable sachets — take your ritual anywhere</li>
+          <li class="flex items-center gap-3 text-cream/85"><span class="text-gold font-bold text-lg">✓</span> Zero sugar — all the pleasure, none of the guilt</li>
+        </ul>
+
+        <div class="flex flex-col sm:flex-row gap-4 mb-8">
+          <a href="#pricing" class="btn-gold px-8 py-4 text-lg font-body shadow-xl">☕ Order My Coffee Now →</a>
+          <a href="#vsl" class="flex items-center justify-center gap-2 rounded-full border border-cream/25 px-6 py-4 text-cream/80 hover:border-gold/40 hover:text-gold transition-all duration-200">
+            <span class="text-gold text-sm">▶</span> Watch the Story
+          </a>
+        </div>
+
+        <div class="flex flex-wrap gap-x-6 gap-y-2">
+          <span class="flex items-center gap-1.5 text-cream/55 text-sm"><span class="text-gold">🔒</span> Secure Checkout</span>
+          <span class="flex items-center gap-1.5 text-cream/55 text-sm"><span class="text-gold">↩</span> 30-Day Guarantee</span>
+          <span class="flex items-center gap-1.5 text-cream/55 text-sm"><span class="text-gold">🚚</span> Free Shipping on 3+</span>
+          <span class="flex items-center gap-1.5 text-cream/55 text-sm"><span class="text-gold">🇺🇸</span> Ships from USA</span>
+        </div>
+      </div>
+
+      <!-- ── Product Card ── -->
+      <div class="order-1 lg:order-2 flex justify-center">
+        <div class="product-float relative">
+
+          <!-- Floating badges -->
+          <div class="badge-float absolute -top-4 -right-6 z-10 rounded-full bg-gold px-3 py-1.5 text-xs font-bold text-espresso shadow-lg" style="animation-delay:.5s">
+            #1 Trending ☕
+          </div>
+          <div class="badge-float absolute -bottom-3 -left-6 z-10 rounded-full border border-gold/35 bg-espresso px-3 py-1.5 text-xs font-medium text-cream shadow-lg" style="animation-delay:1s">
+            ★ 4.9 / 5 Stars
+          </div>
+
+          <!-- Card -->
+          <div class="rounded-3xl border border-cream/20 bg-white/10 p-8 text-center backdrop-blur-sm shadow-2xl" style="min-width:290px">
+            <div class="text-[110px] leading-none mb-3 filter" style="filter:drop-shadow(0 16px 32px rgba(0,0,0,.4))">☕</div>
+            <div class="font-display text-2xl font-bold text-cream mb-0.5">Amazing Slim</div>
+            <div class="font-display text-sm italic text-gold mb-5">Caffè Macchiato</div>
+
+            <div class="grid grid-cols-3 gap-3 border-t border-cream/15 pt-4 mb-4">
+              <div><div class="text-gold font-bold text-xl font-body">60s</div><div class="text-cream/50 text-xs mt-0.5">Ready In</div></div>
+              <div class="border-x border-cream/15"><div class="text-gold font-bold text-xl font-body">0g</div><div class="text-cream/50 text-xs mt-0.5">Sugar</div></div>
+              <div><div class="text-gold font-bold text-xl font-body">10</div><div class="text-cream/50 text-xs mt-0.5">Sachets</div></div>
+            </div>
+
+            <div class="text-amber-400 text-lg tracking-wide">★★★★★</div>
+            <div class="text-cream/45 text-xs mt-1">2,400+ happy customers</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ VSL -->
+<section id="vsl" class="relative overflow-hidden bg-espresso-dark py-20 text-cream">
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(200,150,60,.13) 0%,transparent 65%)"></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-4">
+    <div class="text-center mb-10 reveal">
+      <span class="text-gold text-sm font-semibold uppercase tracking-widest">Watch First</span>
+      <h2 class="font-display text-3xl lg:text-4xl font-bold text-cream mt-3 mb-3">
+        "I Had No Idea My Morning Coffee Could Feel <em class="italic text-gold">This</em> Good"
+      </h2>
+      <p class="text-cream/55 text-lg">See what's inside every sachet — and why thousands of busy women start their morning with this instead of anything else.</p>
+    </div>
+
+    <!-- Video embed -->
+    <div class="reveal relative mb-10 overflow-hidden rounded-2xl border border-gold/20 shadow-2xl bg-espresso" style="aspect-ratio:16/9">
+
+      <!-- Custom play overlay -->
+      <div id="vsl-overlay" class="absolute inset-0 z-10 flex flex-col items-center justify-center cursor-pointer group" onclick="loadVSL()">
+        <div class="absolute inset-0 bg-gradient-to-br from-espresso-dark via-espresso to-espresso-mid"></div>
+        <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 60% 60% at 50% 40%,rgba(200,150,60,.14) 0%,transparent 65%)"></div>
+        <!-- Coffee icon -->
+        <div class="relative z-10 text-6xl mb-5 group-hover:scale-110 transition-transform duration-300" style="filter:drop-shadow(0 8px 24px rgba(200,150,60,.35))">☕</div>
+        <!-- Pulsing play button -->
+        <div class="relative z-10 play-btn mb-4">
+          <svg class="w-8 h-8 text-espresso ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <p class="relative z-10 text-cream/55 text-sm font-body tracking-wide">▶ Watch the Product Video</p>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent opacity-40"></div>
+      </div>
+
+      <!-- Native HTML5 video (shown after overlay dismissed) -->
+      <video id="vsl-video"
+        class="absolute inset-0 w-full h-full hidden object-cover"
+        src="Macch.mp4"
+        controls
+        playsinline
+        preload="metadata">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Supporting bullets -->
+    <div class="reveal grid md:grid-cols-2 gap-4">
+      <div class="flex gap-4 items-start rounded-xl border border-cream/10 bg-white/5 p-4">
+        <span class="text-gold text-2xl mt-0.5 flex-shrink-0">☕</span>
+        <div>
+          <h4 class="font-semibold text-cream mb-1">What's Actually Inside Every Sachet</h4>
+          <p class="text-cream/50 text-sm">Premium Arabica coffee meets 5 natural wellness ingredients — all working together in one smooth, indulgent cup.</p>
+        </div>
+      </div>
+      <div class="flex gap-4 items-start rounded-xl border border-cream/10 bg-white/5 p-4">
+        <span class="text-gold text-2xl mt-0.5 flex-shrink-0">🌿</span>
+        <div>
+          <h4 class="font-semibold text-cream mb-1">Garcinia Cambogia, Aloe Vera & More</h4>
+          <p class="text-cream/50 text-sm">Natural botanicals — including Guarana, L-Carnitine, and Glutathione — carefully selected to support your daily wellness ritual.</p>
+        </div>
+      </div>
+      <div class="flex gap-4 items-start rounded-xl border border-cream/10 bg-white/5 p-4">
+        <span class="text-gold text-2xl mt-0.5 flex-shrink-0">⚡</span>
+        <div>
+          <h4 class="font-semibold text-cream mb-1">60-Second Ritual, All-Day Confidence</h4>
+          <p class="text-cream/50 text-sm">See exactly how one sachet becomes the easiest, most enjoyable morning habit you'll actually look forward to — every single day.</p>
+        </div>
+      </div>
+      <div class="flex gap-4 items-start rounded-xl border border-cream/10 bg-white/5 p-4">
+        <span class="text-gold text-2xl mt-0.5 flex-shrink-0">🏅</span>
+        <div>
+          <h4 class="font-semibold text-cream mb-1">FDA Approved & Halal Certified</h4>
+          <p class="text-cream/50 text-sm">Every batch meets strict regulatory standards. Not just a great taste — a cup you can feel genuinely good about, every morning.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ PROBLEM -->
+<section class="bg-cream py-20">
+  <div class="max-w-5xl mx-auto px-4">
+
+    <div class="text-center mb-14 reveal">
+      <span class="text-gold text-sm font-semibold uppercase tracking-widest">You're Not Alone</span>
+      <h2 class="font-display text-3xl lg:text-4xl xl:text-5xl font-bold text-espresso mt-3 mb-4">Does Any of This Sound Familiar?</h2>
+      <p class="text-mocha/70 text-lg max-w-2xl mx-auto">Most busy women are stuck in the same exhausting cycle — until they discover a simpler way.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-14">
+      <div class="reveal rounded-2xl border border-cream-deeper bg-cream-dark p-6 flex gap-4 hover:shadow-lg transition-shadow duration-300">
+        <div class="text-3xl flex-shrink-0">😩</div>
+        <div><h3 class="font-display text-lg font-bold text-espresso mb-2">Mornings Feel Like a Battlefield</h3><p class="text-mocha/75 text-sm leading-relaxed">You're managing everything for everyone else before 8am — and already running on fumes before the day even starts.</p></div>
+      </div>
+      <div class="reveal rounded-2xl border border-cream-deeper bg-cream-dark p-6 flex gap-4 hover:shadow-lg transition-shadow duration-300">
+        <div class="text-3xl flex-shrink-0">💸</div>
+        <div><h3 class="font-display text-lg font-bold text-espresso mb-2">$7 Lattes Add Up Fast</h3><p class="text-mocha/75 text-sm leading-relaxed">You deserve a great coffee — but $7 a day is $200/month. There has to be a smarter way to treat yourself.</p></div>
+      </div>
+      <div class="reveal rounded-2xl border border-cream-deeper bg-cream-dark p-6 flex gap-4 hover:shadow-lg transition-shadow duration-300">
+        <div class="text-3xl flex-shrink-0">🤯</div>
+        <div><h3 class="font-display text-lg font-bold text-espresso mb-2">Wellness Routines That Never Stick</h3><p class="text-mocha/75 text-sm leading-relaxed">You've tried complicated morning routines before. They lasted two weeks. You need something effortless and actually enjoyable.</p></div>
+      </div>
+      <div class="reveal rounded-2xl border border-cream-deeper bg-cream-dark p-6 flex gap-4 hover:shadow-lg transition-shadow duration-300">
+        <div class="text-3xl flex-shrink-0">🙄</div>
+        <div><h3 class="font-display text-lg font-bold text-espresso mb-2">"Healthy" Drinks That Taste Awful</h3><p class="text-mocha/75 text-sm leading-relaxed">Why does "good for you" always mean chalky, bland, or weirdly sweet? You want something that actually feels like a treat.</p></div>
+      </div>
+    </div>
+
+    <!-- Bridge -->
+    <div class="reveal text-center rounded-2xl bg-gradient-to-r from-espresso to-espresso-mid p-10 text-cream">
+      <p class="font-display text-xl lg:text-2xl italic mb-3">"What if your daily coffee was <em class="text-gold">already</em> the best part of your wellness routine?"</p>
+      <p class="text-cream/60 mb-6">That's exactly what Amazing Slim Caffè Macchiato was designed for.</p>
+      <a href="#pricing" class="btn-gold px-8 py-3 font-body">Show Me How →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ PRODUCT INTRO -->
+<section class="bg-cream-dark py-20">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+      <!-- Visual -->
+      <div class="reveal text-center">
+        <div class="relative inline-block">
+          <div class="rounded-3xl bg-gradient-to-br from-espresso to-espresso-mid p-12 shadow-2xl text-center">
+            <div class="text-[100px] leading-none mb-4" style="filter:drop-shadow(0 12px 28px rgba(0,0,0,.45))">☕</div>
+            <div class="font-display text-2xl font-bold text-cream">Amazing Slim</div>
+            <div class="font-display text-sm italic text-gold">Caffè Macchiato</div>
+          </div>
+          <div class="absolute -top-3 -right-6 rounded-xl bg-gold px-3 py-1.5 text-sm font-bold text-espresso shadow-lg">100% Arabica</div>
+          <div class="absolute -bottom-3 -left-6 rounded-xl border border-gold/30 bg-espresso px-3 py-1.5 text-sm font-medium text-cream shadow-lg">10 Sachets / Box</div>
+        </div>
+
+        <div class="mt-8 grid grid-cols-4 gap-4">
+          <div class="text-center"><div class="font-bold text-2xl text-espresso">60s</div><div class="text-mocha/55 text-xs mt-0.5">Ready In</div></div>
+          <div class="text-center border-x border-cream-deeper"><div class="font-bold text-2xl text-espresso">100%</div><div class="text-mocha/55 text-xs mt-0.5">Arabica</div></div>
+          <div class="text-center border-r border-cream-deeper"><div class="font-bold text-2xl text-espresso">0g</div><div class="text-mocha/55 text-xs mt-0.5">Sugar</div></div>
+          <div class="text-center"><div class="font-bold text-2xl text-espresso">10</div><div class="text-mocha/55 text-xs mt-0.5">Servings</div></div>
+        </div>
+      </div>
+
+      <!-- Copy -->
+      <div class="reveal">
+        <span class="text-gold text-sm font-semibold uppercase tracking-widest">Introducing</span>
+        <h2 class="font-display text-3xl lg:text-4xl font-bold text-espresso mt-3 mb-5">The Coffee That Loves Your Lifestyle Back</h2>
+        <p class="text-mocha/80 text-lg leading-relaxed mb-5">
+          Amazing Slim Caffè Macchiato is a <strong>premium instant coffee experience</strong> crafted for women who refuse to settle for bland mornings — but genuinely don't have time for complicated routines.
+        </p>
+        <p class="text-mocha/75 leading-relaxed mb-8">
+          Each convenient sachet delivers the bold, creamy depth of a handcrafted macchiato — rich Arabica, a velvety smooth finish, and the kind of morning moment you actually look forward to all week.
+        </p>
+
+        <ul class="space-y-4 mb-8">
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 h-5 w-5 flex-shrink-0 rounded-full bg-gold/20 flex items-center justify-center"><span class="text-gold text-[10px] font-bold">✓</span></div>
+            <span class="text-mocha/85"><strong class="text-espresso">Rich Arabica taste</strong> — smooth, bold, and satisfying every single morning</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 h-5 w-5 flex-shrink-0 rounded-full bg-gold/20 flex items-center justify-center"><span class="text-gold text-[10px] font-bold">✓</span></div>
+            <span class="text-mocha/85"><strong class="text-espresso">Individually portioned sachets</strong> — perfect at home, in the office, or on the go</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 h-5 w-5 flex-shrink-0 rounded-full bg-gold/20 flex items-center justify-center"><span class="text-gold text-[10px] font-bold">✓</span></div>
+            <span class="text-mocha/85"><strong class="text-espresso">Zero sugar formula</strong> — indulgent flavour without the sweetness overload</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 h-5 w-5 flex-shrink-0 rounded-full bg-gold/20 flex items-center justify-center"><span class="text-gold text-[10px] font-bold">✓</span></div>
+            <span class="text-mocha/85"><strong class="text-espresso">No machine required</strong> — just hot water, a cup, and 60 seconds of your morning</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 h-5 w-5 flex-shrink-0 rounded-full bg-gold/20 flex items-center justify-center"><span class="text-gold text-[10px] font-bold">✓</span></div>
+            <span class="text-mocha/85"><strong class="text-espresso">10 sachets per box</strong> — stock up with our 3-box or 6-box bundles for the best value and savings on shipping</span>
+          </li>
+        </ul>
+
+        <a href="#pricing" class="btn-gold px-8 py-4 text-lg font-body">Get My Caffè Macchiato →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ BENEFITS -->
+<section class="bg-espresso py-20">
+  <div class="max-w-6xl mx-auto px-4">
+
+    <div class="text-center mb-14 reveal">
+      <span class="text-gold text-sm font-semibold uppercase tracking-widest">Why You'll Love It</span>
+      <h2 class="font-display text-3xl lg:text-4xl font-bold text-cream mt-3 mb-4">Everything You Want. Nothing You Don't.</h2>
+      <p class="text-cream/55 text-lg max-w-2xl mx-auto">Six reasons why 2,400+ women choose Amazing Slim Caffè Macchiato to start their day.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="benefit-card reveal rounded-2xl border border-cream/10 bg-white/5 p-6 hover:bg-white/10 hover:border-gold/30 transition-all duration-300">
+        <div class="benefit-accent mb-4"></div>
+        <div class="text-3xl mb-3">☕</div>
+        <h3 class="font-display text-lg font-bold text-cream mb-2">Barista-Quality Taste</h3>
+        <p class="text-cream/55 text-sm leading-relaxed">Rich, smooth Arabica that actually tastes like a real macchiato — not a watered-down powder mix.</p>
+      </div>
+      <div class="benefit-card reveal rounded-2xl border border-cream/10 bg-white/5 p-6 hover:bg-white/10 hover:border-gold/30 transition-all duration-300">
+        <div class="benefit-accent mb-4"></div>
+        <div class="text-3xl mb-3">⚡</div>
+        <h3 class="font-display text-lg font-bold text-cream mb-2">60-Second Prep</h3>
+        <p class="text-cream/55 text-sm leading-relaxed">From sachet to sipping in under a minute. No machine, no grinding, no fuss — just perfection in a cup.</p>
+      </div>
+      <div class="benefit-card reveal rounded-2xl border border-cream/10 bg-white/5 p-6 hover:bg-white/10 hover:border-gold/30 transition-all duration-300">
+        <div class="benefit-accent mb-4"></div>
+        <div class="text-3xl mb-3">👜</div>
+        <h3 class="font-display text-lg font-bold text-cream mb-2">Take It Anywhere</h3>
+        <p class="text-cream/55 text-sm leading-relaxed">Slim individual sachets slip into any bag. Home, office, hotel, gym — your ritual travels with you.</p>
+      </div>
+      <div class="benefit-card reveal rounded-2xl border border-cream/10 bg-white/5 p-6 hover:bg-white/10 hover:border-gold/30 transition-all duration-300">
+        <div class="benefit-accent mb-4"></div>
+        <div class="text-3xl mb-3">🌿</div>
+        <h3 class="font-display text-lg font-bold text-cream mb-2">Premium Ingredients</h3>
+        <p class="text-cream/55 text-sm leading-relaxed">100% Arabica, zero artificial colors, zero sugar. You know exactly what you're putting in your body.</p>
+      </div>
+      <div class="benefit-card reveal rounded-2xl border border-cream/10 bg-white/5 p-6 hover:bg-white/10 hover:border-gold/30 transition-all duration-300">
+        <div class="benefit-accent mb-4"></div>
+        <div class="text-3xl mb-3">🌅</div>
+        <h3 class="font-display text-lg font-bold text-cream mb-2">A Ritual That Sticks</h3>
+        <p class="text-cream/55 text-sm leading-relaxed">One sachet = one mindful morning moment. The routine you'll actually keep — because you genuinely look forward to it.</p>
+      </div>
+      <div class="benefit-card reveal rounded-2xl border border-cream/10 bg-white/5 p-6 hover:bg-white/10 hover:border-gold/30 transition-all duration-300">
+        <div class="benefit-accent mb-4"></div>
+        <div class="text-3xl mb-3">💰</div>
+        <h3 class="font-display text-lg font-bold text-cream mb-2">Café Savings</h3>
+        <p class="text-cream/55 text-sm leading-relaxed">Stop paying $7–$8 for a takeout macchiato. Get the same indulgent experience for a fraction of the cost, daily.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ HOW TO PREPARE -->
+<section class="bg-cream py-20">
+  <div class="max-w-5xl mx-auto px-4">
+
+    <div class="text-center mb-14 reveal">
+      <span class="text-gold text-sm font-semibold uppercase tracking-widest">Simple As It Gets</span>
+      <h2 class="font-display text-3xl lg:text-4xl font-bold text-espresso mt-3 mb-4">Your Perfect Cup in 4 Easy Steps</h2>
+      <p class="text-mocha/65 text-lg">No experience needed. If you can pour hot water, you're already an expert.</p>
+    </div>
+
+    <div class="relative grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
+      <!-- Desktop connector line -->
+      <div class="hidden lg:block absolute top-10 left-[calc(12.5%+32px)] right-[calc(12.5%+32px)] h-0.5 bg-gradient-to-r from-gold via-gold-light to-gold pointer-events-none"></div>
+
+      <!-- Steps -->
+      <div class="reveal text-center">
+        <div class="w-20 h-20 rounded-full border-4 border-gold bg-espresso flex items-center justify-center text-3xl mx-auto mb-4 shadow-xl relative z-10">📦</div>
+        <div class="text-gold text-xs font-bold uppercase tracking-widest mb-2">Step 1</div>
+        <h3 class="font-display text-lg font-bold text-espresso mb-2">Open Sachet</h3>
+        <p class="text-mocha/65 text-sm">Tear along the perforated edge — fresh, pre-measured coffee ready to go.</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="w-20 h-20 rounded-full border-4 border-gold bg-espresso flex items-center justify-center text-3xl mx-auto mb-4 shadow-xl relative z-10">🫙</div>
+        <div class="text-gold text-xs font-bold uppercase tracking-widest mb-2">Step 2</div>
+        <h3 class="font-display text-lg font-bold text-espresso mb-2">Pour Into Cup</h3>
+        <p class="text-mocha/65 text-sm">Empty the sachet into your favourite mug. Just watching the powder fall is oddly satisfying.</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="w-20 h-20 rounded-full border-4 border-gold bg-espresso flex items-center justify-center text-3xl mx-auto mb-4 shadow-xl relative z-10">🌊</div>
+        <div class="text-gold text-xs font-bold uppercase tracking-widest mb-2">Step 3</div>
+        <h3 class="font-display text-lg font-bold text-espresso mb-2">Add Hot Water</h3>
+        <p class="text-mocha/65 text-sm">Pour 150–180ml of hot water and watch the rich macchiato bloom into colour.</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="w-20 h-20 rounded-full border-4 border-gold bg-espresso flex items-center justify-center text-3xl mx-auto mb-4 shadow-xl relative z-10">✨</div>
+        <div class="text-gold text-xs font-bold uppercase tracking-widest mb-2">Step 4</div>
+        <h3 class="font-display text-lg font-bold text-espresso mb-2">Stir & Enjoy</h3>
+        <p class="text-mocha/65 text-sm">Give it a quick stir, breathe in the aroma, and take your first sip of your best morning yet.</p>
+      </div>
+    </div>
+
+    <div class="mt-14 text-center reveal">
+      <p class="text-mocha/60 mb-5">That's it. That's the whole ritual.</p>
+      <a href="#pricing" class="btn-gold px-8 py-3 font-body">Start My Morning Ritual →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ INGREDIENT STORY -->
+<section class="relative overflow-hidden bg-espresso-mid py-20 text-cream">
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 55% 70% at 0% 100%,rgba(200,150,60,.18) 0%,transparent 55%)"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+      <!-- Copy -->
+      <div class="reveal">
+        <span class="text-gold text-sm font-semibold uppercase tracking-widest">The Craft Behind the Cup</span>
+        <h2 class="font-display text-3xl lg:text-4xl font-bold text-cream mt-3 mb-5">
+          Every Sip Starts With <em class="italic text-gold">Premium Arabica</em>
+        </h2>
+        <p class="text-cream/65 leading-relaxed mb-5">
+          We didn't settle for commodity coffee. Amazing Slim Caffè Macchiato is built on a foundation of 100% premium Arabica beans — the world's most prized coffee variety, known for its naturally smooth, nuanced flavour profile and lower bitterness.
+        </p>
+        <p class="text-cream/65 leading-relaxed mb-8">
+          We carefully curate our blend to deliver a consistently rich, velvety macchiato experience — the kind that makes you pause, breathe, and actually enjoy the moment.
+        </p>
+
+        <div class="space-y-4 mb-8">
+          <div class="flex items-center gap-4 rounded-xl border border-cream/10 bg-white/5 p-4">
+            <div class="h-10 w-10 flex-shrink-0 rounded-full bg-gold/20 flex items-center justify-center"><span class="text-gold text-lg">☕</span></div>
+            <div><h4 class="font-semibold text-cream">100% Arabica Coffee</h4><p class="text-cream/45 text-sm">Premium grade, smooth and complex — the gold standard of coffee beans worldwide</p></div>
+          </div>
+          <div class="flex items-center gap-4 rounded-xl border border-cream/10 bg-white/5 p-4">
+            <div class="h-10 w-10 flex-shrink-0 rounded-full bg-gold/20 flex items-center justify-center"><span class="text-gold text-lg">🌿</span></div>
+            <div><h4 class="font-semibold text-cream">No Artificial Colors or Flavors</h4><p class="text-cream/45 text-sm">What you taste is real — clean, honest ingredients in every single sachet</p></div>
+          </div>
+          <div class="flex items-center gap-4 rounded-xl border border-cream/10 bg-white/5 p-4">
+            <div class="h-10 w-10 flex-shrink-0 rounded-full bg-gold/20 flex items-center justify-center"><span class="text-gold text-lg">🔬</span></div>
+            <div><h4 class="font-semibold text-cream">Quality Assured</h4><p class="text-cream/45 text-sm">Each batch is quality-checked so every cup consistently meets our premium standard</p></div>
+          </div>
+        </div>
+        <p class="text-cream/30 text-xs italic">Full ingredient details available on product packaging. See label for complete information.</p>
+      </div>
+
+      <!-- Visual -->
+      <div class="reveal text-center">
+        <div class="text-[130px] leading-none" style="filter:drop-shadow(0 20px 60px rgba(200,150,60,.35))">☕</div>
+        <div class="mt-10 grid grid-cols-3 gap-6">
+          <div><div class="font-display text-3xl font-bold text-gold">100%</div><div class="text-cream/50 text-xs mt-1">Premium Arabica</div></div>
+          <div class="border-x border-cream/10"><div class="font-display text-3xl font-bold text-gold">10</div><div class="text-cream/50 text-xs mt-1">Servings/Box</div></div>
+          <div><div class="font-display text-3xl font-bold text-gold">0</div><div class="text-cream/50 text-xs mt-1">Artificial Colors</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ VIDEO TESTIMONIALS -->
+<section class="bg-cream-dark py-20">
+  <div class="max-w-6xl mx-auto px-4">
+
+    <div class="text-center mb-14 reveal">
+      <span class="text-gold text-sm font-semibold uppercase tracking-widest">Real People, Real Mornings</span>
+      <h2 class="font-display text-3xl lg:text-4xl font-bold text-espresso mt-3 mb-4">Hear It From the Women Who Made the Switch</h2>
+      <p class="text-mocha/65 text-lg">These aren't actors. These are real customers sharing real mornings.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Testimonial 1 -->
+      <div class="reveal">
+        <div class="relative mb-5 overflow-hidden rounded-2xl bg-espresso shadow-xl cursor-pointer group" style="aspect-ratio:9/16;max-height:420px">
+          <div class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-espresso/75 to-espresso">
+            <div class="text-6xl mb-5">👩‍👧</div>
+            <div class="play-btn mb-3"><svg class="w-6 h-6 text-espresso ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-espresso to-transparent">
+            <div class="text-amber-400 text-sm">★★★★★</div>
+          </div>
+        </div>
+        <h3 class="font-display text-lg font-bold text-espresso mb-1">Sarah, 38 — Busy Mom of 3</h3>
+        <p class="text-mocha/70 text-sm italic leading-relaxed">"I used to skip breakfast just to save time. Now my Caffè Macchiato IS my morning. 60 seconds and I'm ready to take on the day — even the school run."</p>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="reveal">
+        <div class="relative mb-5 overflow-hidden rounded-2xl bg-espresso shadow-xl cursor-pointer group" style="aspect-ratio:9/16;max-height:420px">
+          <div class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-espresso/75 to-espresso">
+            <div class="text-6xl mb-5">👩‍💼</div>
+            <div class="play-btn mb-3"><svg class="w-6 h-6 text-espresso ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-espresso to-transparent">
+            <div class="text-amber-400 text-sm">★★★★★</div>
+          </div>
+        </div>
+        <h3 class="font-display text-lg font-bold text-espresso mb-1">Michelle, 44 — Marketing Director</h3>
+        <p class="text-mocha/70 text-sm italic leading-relaxed">"I was spending $35 a week on lattes. Now I make something even better at my desk in under a minute. My team thinks I have a secret coffee machine hidden somewhere."</p>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="reveal">
+        <div class="relative mb-5 overflow-hidden rounded-2xl bg-espresso shadow-xl cursor-pointer group" style="aspect-ratio:9/16;max-height:420px">
+          <div class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-espresso/75 to-espresso">
+            <div class="text-6xl mb-5">👩‍💻</div>
+            <div class="play-btn mb-3"><svg class="w-6 h-6 text-espresso ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-espresso to-transparent">
+            <div class="text-amber-400 text-sm">★★★★★</div>
+          </div>
+        </div>
+        <h3 class="font-display text-lg font-bold text-espresso mb-1">Jess, 31 — Freelancer</h3>
+        <p class="text-mocha/70 text-sm italic leading-relaxed">"I work from different places every week. Having my sachets with me means I always start with something I love — whether I'm at a co-working space or a café in Barcelona."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ SOCIAL PROOF -->
+<section class="bg-cream py-20">
+  <div class="max-w-6xl mx-auto px-4">
+
+    <div class="text-center mb-14 reveal">
+      <span class="text-gold text-sm font-semibold uppercase tracking-widest">Verified Reviews</span>
+      <h2 class="font-display text-3xl lg:text-4xl font-bold text-espresso mt-3 mb-6">Join 2,400+ Women Who Upgraded Their Mornings</h2>
+
+      <!-- Rating summary -->
+      <div class="inline-flex flex-col sm:flex-row items-center gap-6 rounded-2xl border border-cream-deeper bg-cream-dark px-8 py-5">
+        <div class="text-center">
+          <div class="font-display text-5xl font-bold text-espresso">4.9</div>
+          <div class="text-amber-500 text-xl mt-1">★★★★★</div>
+          <div class="text-mocha/55 text-sm mt-1">Overall Rating</div>
+        </div>
+        <div class="border-t sm:border-t-0 sm:border-l border-cream-deeper pt-4 sm:pt-0 sm:pl-6">
+          <div class="space-y-2.5">
+            <div class="flex items-center gap-2"><span class="text-xs text-mocha/50 w-6">5★</span><div class="w-32 h-2 rounded-full bg-cream-deeper overflow-hidden"><div class="bar-fill" style="width:91%"></div></div><span class="text-xs text-mocha/50">91%</span></div>
+            <div class="flex items-center gap-2"><span class="text-xs text-mocha/50 w-6">4★</span><div class="w-32 h-2 rounded-full bg-cream-deeper overflow-hidden"><div class="bar-fill" style="width:7%"></div></div><span class="text-xs text-mocha/50">7%</span></div>
+            <div class="flex items-center gap-2"><span class="text-xs text-mocha/50 w-6">3★</span><div class="w-32 h-2 rounded-full bg-cream-deeper overflow-hidden"><div class="bar-fill" style="width:2%"></div></div><span class="text-xs text-mocha/50">2%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="reveal rounded-2xl border border-cream-deeper bg-cream-dark p-6 hover:shadow-lg transition-shadow duration-300">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold text-sm bg-[#D4845A] flex-shrink-0">A</div>
+          <div class="flex-1"><div class="font-semibold text-espresso text-sm">Amanda R.</div><div class="text-mocha/45 text-xs">Verified Purchase</div></div>
+          <div class="text-amber-500 text-sm">★★★★★</div>
+        </div>
+        <p class="text-mocha/75 text-sm leading-relaxed italic">"Honestly didn't expect much from an instant coffee, but this is INCREDIBLE. It tastes like something I'd pay $8 for at a café. Already ordered my second box."</p>
+      </div>
+      <div class="reveal rounded-2xl border border-cream-deeper bg-cream-dark p-6 hover:shadow-lg transition-shadow duration-300">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold text-sm bg-[#7B8FBE] flex-shrink-0">M</div>
+          <div class="flex-1"><div class="font-semibold text-espresso text-sm">Maria T.</div><div class="text-mocha/45 text-xs">Verified Purchase</div></div>
+          <div class="text-amber-500 text-sm">★★★★★</div>
+        </div>
+        <p class="text-mocha/75 text-sm leading-relaxed italic">"I travel for work every week. These sachets are a lifesaver — I throw a few in my carry-on and I'm set. Same great coffee no matter where I am."</p>
+      </div>
+      <div class="reveal rounded-2xl border border-cream-deeper bg-cream-dark p-6 hover:shadow-lg transition-shadow duration-300">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold text-sm bg-[#5DA882] flex-shrink-0">L</div>
+          <div class="flex-1"><div class="font-semibold text-espresso text-sm">Lauren K.</div><div class="text-mocha/45 text-xs">Verified Purchase</div></div>
+          <div class="text-amber-500 text-sm">★★★★★</div>
+        </div>
+        <p class="text-mocha/75 text-sm leading-relaxed italic">"My mornings used to be chaotic. This 60-second ritual is the one consistent thing I do for myself daily. It sounds small but it genuinely changed my mindset."</p>
+      </div>
+      <div class="reveal rounded-2xl border border-cream-deeper bg-cream-dark p-6 hover:shadow-lg transition-shadow duration-300">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold text-sm bg-[#C4826A] flex-shrink-0">P</div>
+          <div class="flex-1"><div class="font-semibold text-espresso text-sm">Priya N.</div><div class="text-mocha/45 text-xs">Verified Purchase</div></div>
+          <div class="text-amber-500 text-sm">★★★★★</div>
+        </div>
+        <p class="text-mocha/75 text-sm leading-relaxed italic">"Zero sugar but still so smooth and satisfying — I was skeptical. I'm now on my third box. My husband keeps stealing mine!"</p>
+      </div>
+      <div class="reveal rounded-2xl border border-cream-deeper bg-cream-dark p-6 hover:shadow-lg transition-shadow duration-300">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold text-sm bg-[#8B7EC8] flex-shrink-0">D</div>
+          <div class="flex-1"><div class="font-semibold text-espresso text-sm">Diana W.</div><div class="text-mocha/45 text-xs">Verified Purchase</div></div>
+          <div class="text-amber-500 text-sm">★★★★★</div>
+        </div>
+        <p class="text-mocha/75 text-sm leading-relaxed italic">"Rich, smooth, not bitter at all. And knowing exactly what's in it makes me feel good about my choice every morning. This is exactly what I was looking for."</p>
+      </div>
+      <div class="reveal rounded-2xl border border-cream-deeper bg-cream-dark p-6 hover:shadow-lg transition-shadow duration-300">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold text-sm bg-[#E8925A] flex-shrink-0">S</div>
+          <div class="flex-1"><div class="font-semibold text-espresso text-sm">Sandra B.</div><div class="text-mocha/45 text-xs">Verified Purchase</div></div>
+          <div class="text-amber-500 text-sm">★★★★★</div>
+        </div>
+        <p class="text-mocha/75 text-sm leading-relaxed italic">"Got the 3-box bundle and so glad I did. It's become part of my morning meditation — simple, intentional, and delicious. Exactly what I needed."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ PRICING -->
+<section id="pricing" class="bg-espresso py-20">
+  <div class="max-w-5xl mx-auto px-4">
+
+    <div class="text-center mb-14 reveal">
+      <span class="text-gold text-sm font-semibold uppercase tracking-widest">Choose Your Bundle</span>
+      <h2 class="font-display text-3xl lg:text-4xl font-bold text-cream mt-3 mb-4">Start Your Morning Ritual Today</h2>
+      <p class="text-cream/55 text-lg">The more you commit, the more you save — and the more mornings you'll love.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-12 items-start">
+
+      <!-- Starter -->
+      <div class="reveal rounded-2xl border border-cream/20 bg-white/5 p-6 hover:border-cream/40 transition-colors duration-300">
+        <div class="text-center mb-6">
+          <div class="text-3xl mb-3">☕</div>
+          <h3 class="font-display text-xl font-bold text-cream mb-1">Starter</h3>
+          <p class="text-cream/45 text-sm mb-4">1 Box — 10 Sachets</p>
+          <div class="font-display text-4xl font-bold text-cream my-1">₱375</div>
+          <div class="text-cream/45 text-sm mt-1">+ ₱100 shipping</div>
+          <div class="text-gold/60 text-xs mt-1 font-medium">₱475 total</div>
+        </div>
+        <ul class="space-y-2 mb-6 text-sm text-cream/65">
+          <li class="flex items-center gap-2"><span class="text-gold">✓</span> 10 sachets</li>
+          <li class="flex items-center gap-2"><span class="text-gold">✓</span> 10-day supply</li>
+          <li class="flex items-center gap-2"><span class="text-gold">✓</span> 30-day guarantee</li>
+          <li class="flex items-center gap-2 text-cream/30"><span>✗</span> Reduced shipping</li>
+          <li class="flex items-center gap-2 text-cream/30"><span>✗</span> Free shipping</li>
+        </ul>
+        <a href="#" class="block text-center rounded-full border border-cream/30 py-3 text-cream font-semibold hover:border-gold/50 hover:text-gold transition-all duration-200 font-body">Order 1 Box →</a>
+        <p class="text-center text-cream/30 text-xs mt-3">₱37.50 per sachet</p>
+      </div>
+
+      <!-- Most Popular — FEATURED -->
+      <div class="reveal relative pt-4">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 z-10">
+          <span class="rounded-full bg-gold px-4 py-1.5 text-xs font-bold text-espresso shadow-lg uppercase tracking-wide">⭐ Most Popular</span>
+        </div>
+        <div class="pricing-featured-card rounded-2xl border-2 border-gold bg-white/10 p-6">
+          <div class="text-center mb-6">
+            <div class="text-3xl mb-3">☕☕☕</div>
+            <h3 class="font-display text-xl font-bold text-cream mb-1">Bundle of 3</h3>
+            <p class="text-gold text-sm font-semibold mb-4">3 Boxes — 30 Sachets</p>
+            <div class="font-display text-4xl font-bold text-cream my-1">₱1,125</div>
+            <div class="text-cream/55 text-sm mt-1">+ ₱50 shipping</div>
+            <div class="inline-block mt-2 rounded-full border border-gold/40 bg-gold/15 px-3 py-1 text-xs font-bold text-gold">Save ₱250 vs buying separately</div>
+          </div>
+          <ul class="space-y-2 mb-6 text-sm text-cream/80">
+            <li class="flex items-center gap-2"><span class="text-gold">✓</span> 30 sachets</li>
+            <li class="flex items-center gap-2"><span class="text-gold">✓</span> 30-day supply</li>
+            <li class="flex items-center gap-2"><span class="text-gold">✓</span> 30-day guarantee</li>
+            <li class="flex items-center gap-2 font-semibold"><span class="text-gold">✓</span> <strong>Reduced shipping (₱50)</strong></li>
+            <li class="flex items-center gap-2 text-cream/40"><span>✗</span> Free shipping</li>
+          </ul>
+          <a href="#" class="btn-gold block py-3.5 text-base font-body shadow-xl">Order Bundle of 3 →</a>
+          <p class="text-center text-gold/55 text-xs mt-3">₱1,175 total • ₱39.17 per sachet</p>
+        </div>
+      </div>
+
+      <!-- Best Value -->
+      <div class="reveal rounded-2xl border border-cream/20 bg-white/5 p-6 hover:border-cream/40 transition-colors duration-300">
+        <div class="text-center mb-6">
+          <div class="text-3xl mb-3">☕☕☕☕☕☕</div>
+          <h3 class="font-display text-xl font-bold text-cream mb-1">Bundle of 6</h3>
+          <p class="text-cream/45 text-sm mb-4">6 Boxes — 60 Sachets</p>
+          <div class="font-display text-4xl font-bold text-cream my-1">₱2,250</div>
+          <div class="inline-block mt-2 rounded-full bg-gold/20 border border-gold/30 px-3 py-1 text-xs font-bold text-gold">FREE Shipping — Save ₱600</div>
+        </div>
+        <ul class="space-y-2 mb-6 text-sm text-cream/65">
+          <li class="flex items-center gap-2"><span class="text-gold">✓</span> 60 sachets</li>
+          <li class="flex items-center gap-2"><span class="text-gold">✓</span> 60-day supply</li>
+          <li class="flex items-center gap-2"><span class="text-gold">✓</span> 30-day guarantee</li>
+          <li class="flex items-center gap-2 font-semibold text-cream/80"><span class="text-gold">✓</span> <strong>FREE shipping</strong></li>
+          <li class="flex items-center gap-2"><span class="text-gold">✓</span> Best per-sachet rate</li>
+        </ul>
+        <a href="#" class="block text-center rounded-full border border-cream/30 py-3 text-cream font-semibold hover:border-gold/50 hover:text-gold transition-all duration-200 font-body">Order Bundle of 6 →</a>
+        <p class="text-center text-cream/30 text-xs mt-3">₱2,250 total • ₱37.50 per sachet</p>
+      </div>
+    </div>
+
+    <!-- Guarantee -->
+    <div class="reveal rounded-2xl border border-cream/15 bg-white/5 p-8 text-center">
+      <div class="text-5xl mb-4">🛡️</div>
+      <h3 class="font-display text-xl font-bold text-cream mb-2">30-Day Money-Back Guarantee</h3>
+      <p class="text-cream/55 max-w-xl mx-auto text-sm leading-relaxed">
+        Love your morning ritual or we'll refund every penny — no questions asked, no hassle, no paperwork.
+        We're that confident you'll love Amazing Slim Caffè Macchiato, so we're taking all the risk so you don't have to.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ FAQ -->
+<section class="bg-cream-dark py-20">
+  <div class="max-w-3xl mx-auto px-4">
+
+    <div class="text-center mb-14 reveal">
+      <span class="text-gold text-sm font-semibold uppercase tracking-widest">Got Questions?</span>
+      <h2 class="font-display text-3xl lg:text-4xl font-bold text-espresso mt-3">We've Got Answers</h2>
+    </div>
+
+    <div id="faq" class="space-y-3">
+
+      <div class="faq-item reveal overflow-hidden rounded-xl border border-cream-deeper bg-cream">
+        <button onclick="toggleFaq(this)" class="flex w-full items-center justify-between p-5 text-left">
+          <span class="font-display font-semibold text-espresso pr-4">What does Amazing Slim Caffè Macchiato taste like?</span>
+          <span class="faq-icon text-gold text-xl font-light flex-shrink-0">+</span>
+        </button>
+        <div class="faq-body px-5">
+          <p class="text-mocha/75 pb-5 text-sm leading-relaxed">Rich, smooth, and satisfying — like a real macchiato from a specialty café. The Arabica base gives it a naturally sweet, complex flavour profile with zero bitterness or artificial aftertaste. Most customers say it's the best instant coffee they've ever tried.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal overflow-hidden rounded-xl border border-cream-deeper bg-cream">
+        <button onclick="toggleFaq(this)" class="flex w-full items-center justify-between p-5 text-left">
+          <span class="font-display font-semibold text-espresso pr-4">How do I prepare it? Do I need any special equipment?</span>
+          <span class="faq-icon text-gold text-xl font-light flex-shrink-0">+</span>
+        </button>
+        <div class="faq-body px-5">
+          <p class="text-mocha/75 pb-5 text-sm leading-relaxed">No equipment needed at all! Simply open one sachet, pour into a cup, add 150–180ml of hot water, stir for 10 seconds, and enjoy. Ready in under 60 seconds from start to first sip.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal overflow-hidden rounded-xl border border-cream-deeper bg-cream">
+        <button onclick="toggleFaq(this)" class="flex w-full items-center justify-between p-5 text-left">
+          <span class="font-display font-semibold text-espresso pr-4">What are the ingredients?</span>
+          <span class="faq-icon text-gold text-xl font-light flex-shrink-0">+</span>
+        </button>
+        <div class="faq-body px-5">
+          <p class="text-mocha/75 pb-5 text-sm leading-relaxed">Amazing Slim Caffè Macchiato is made with 100% premium Arabica coffee and our proprietary curated blend. The formula contains zero added sugar and no artificial colors. Full ingredient details are printed on the product packaging. Please review the label if you have specific dietary requirements or allergies.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal overflow-hidden rounded-xl border border-cream-deeper bg-cream">
+        <button onclick="toggleFaq(this)" class="flex w-full items-center justify-between p-5 text-left">
+          <span class="font-display font-semibold text-espresso pr-4">How much caffeine does it contain?</span>
+          <span class="faq-icon text-gold text-xl font-light flex-shrink-0">+</span>
+        </button>
+        <div class="faq-body px-5">
+          <p class="text-mocha/75 pb-5 text-sm leading-relaxed">As a coffee-based product, Amazing Slim Caffè Macchiato contains natural caffeine from its Arabica base. Exact caffeine content is listed on the product label. We recommend enjoying it as part of a balanced morning routine and avoiding consumption late in the day.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal overflow-hidden rounded-xl border border-cream-deeper bg-cream">
+        <button onclick="toggleFaq(this)" class="flex w-full items-center justify-between p-5 text-left">
+          <span class="font-display font-semibold text-espresso pr-4">How do I order? What payment methods are accepted?</span>
+          <span class="faq-icon text-gold text-xl font-light flex-shrink-0">+</span>
+        </button>
+        <div class="faq-body px-5">
+          <p class="text-mocha/75 pb-5 text-sm leading-relaxed">Ordering is simple — choose your bundle above, click the order button, and follow the secure checkout. We accept all major credit and debit cards, as well as PayPal. Your payment information is encrypted and never stored.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal overflow-hidden rounded-xl border border-cream-deeper bg-cream">
+        <button onclick="toggleFaq(this)" class="flex w-full items-center justify-between p-5 text-left">
+          <span class="font-display font-semibold text-espresso pr-4">How long does shipping take?</span>
+          <span class="faq-icon text-gold text-xl font-light flex-shrink-0">+</span>
+        </button>
+        <div class="faq-body px-5">
+          <p class="text-mocha/75 pb-5 text-sm leading-relaxed">Orders are typically processed within 1–2 business days. Standard shipping takes 5–7 business days. Expedited options are available at checkout. You'll receive a tracking number via email as soon as your order ships. Free shipping on all 3-box orders and above.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal overflow-hidden rounded-xl border border-cream-deeper bg-cream">
+        <button onclick="toggleFaq(this)" class="flex w-full items-center justify-between p-5 text-left">
+          <span class="font-display font-semibold text-espresso pr-4">What if I'm not satisfied? What's your return policy?</span>
+          <span class="faq-icon text-gold text-xl font-light flex-shrink-0">+</span>
+        </button>
+        <div class="faq-body px-5">
+          <p class="text-mocha/75 pb-5 text-sm leading-relaxed">We offer a 30-day money-back guarantee. If for any reason you're not completely satisfied, contact our support team within 30 days of delivery and we'll process a full refund — no questions asked.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal overflow-hidden rounded-xl border border-cream-deeper bg-cream">
+        <button onclick="toggleFaq(this)" class="flex w-full items-center justify-between p-5 text-left">
+          <span class="font-display font-semibold text-espresso pr-4">Is it suitable for everyone?</span>
+          <span class="faq-icon text-gold text-xl font-light flex-shrink-0">+</span>
+        </button>
+        <div class="faq-body px-5">
+          <p class="text-mocha/75 pb-5 text-sm leading-relaxed">Amazing Slim Caffè Macchiato is designed for adults. If you are pregnant, nursing, have a medical condition, or are taking medication, please consult your healthcare provider before use. Always review the full ingredient list on the label for allergen information.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ FINAL CTA -->
+<section class="relative overflow-hidden bg-gradient-to-br from-espresso-dark via-espresso to-espresso-mid py-24 text-cream">
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 70% 60% at 50% 110%,rgba(200,150,60,.22) 0%,transparent 60%)"></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+    <div class="reveal">
+      <div class="text-6xl mb-6">☕</div>
+      <span class="text-gold text-sm font-semibold uppercase tracking-widest">Your Best Morning Awaits</span>
+      <h2 class="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-cream mt-4 mb-6 leading-tight">
+        Ready To Upgrade<br>Your Coffee Routine?
+      </h2>
+      <p class="text-cream/65 text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
+        Join 2,400+ women who chose to start their mornings with something remarkable. Your first sip is just 60 seconds away.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 mb-10">
+        <span class="flex items-center gap-2 text-cream/60 text-sm"><span class="text-gold">🛡️</span> 30-Day Guarantee</span>
+        <span class="flex items-center gap-2 text-cream/60 text-sm"><span class="text-gold">🚚</span> Free Shipping on 3+</span>
+        <span class="flex items-center gap-2 text-cream/60 text-sm"><span class="text-gold">🔒</span> Secure Checkout</span>
+        <span class="flex items-center gap-2 text-cream/60 text-sm"><span class="text-gold">⭐</span> 4.9/5 Stars</span>
+      </div>
+
+      <a href="#pricing" class="btn-gold px-12 py-5 text-xl font-body shadow-2xl">☕ Order My Amazing Slim Coffee →</a>
+
+      <div class="text-amber-400 text-xl mt-6 mb-2">★★★★★</div>
+      <p class="text-cream/40 text-sm">Loved by 2,400+ customers • Ships within 48 hours</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ FOOTER -->
+<footer class="bg-espresso-dark text-cream/45 py-12">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid md:grid-cols-4 gap-8 mb-10">
+      <div class="md:col-span-2">
+        <div class="font-display text-lg font-bold text-cream mb-2">Amazing Slim Caffè Macchiato</div>
+        <p class="text-sm leading-relaxed mb-4">Premium coffee sachets for busy people who refuse to compromise on taste or their morning ritual.</p>
+        <div class="text-xs text-cream/25">📧 support@amazingslim.com</div>
+      </div>
+      <div>
+        <div class="text-cream/60 font-semibold text-xs mb-3 uppercase tracking-widest">Quick Links</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#pricing" class="hover:text-gold transition-colors">Order Now</a></li>
+          <li><a href="#vsl" class="hover:text-gold transition-colors">Watch Video</a></li>
+          <li><a href="#faq" class="hover:text-gold transition-colors">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-cream/60 font-semibold text-xs mb-3 uppercase tracking-widest">Legal</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-gold transition-colors">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-gold transition-colors">Terms of Service</a></li>
+          <li><a href="#" class="hover:text-gold transition-colors">Shipping Policy</a></li>
+          <li><a href="#" class="hover:text-gold transition-colors">Refund Policy</a></li>
+          <li><a href="#" class="hover:text-gold transition-colors">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-cream/10 pt-8 space-y-3 text-xs text-cream/25 leading-relaxed">
+      <p><strong class="text-cream/35">FDA Disclaimer:</strong> These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Amazing Slim Caffè Macchiato is a food/beverage product and should be consumed as part of a balanced diet and healthy lifestyle.</p>
+      <p><strong class="text-cream/35">Results Disclaimer:</strong> Individual results may vary. Testimonials and reviews reflect individual experiences and are not necessarily typical or representative of all customers. Results are not guaranteed.</p>
+      <p class="border-t border-cream/10 pt-6 text-center">© 2025 Amazing Slim. All rights reserved. Crafted with ☕ for coffee lovers everywhere.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════ STICKY MOBILE CTA -->
+<div id="sticky-bar" class="fixed bottom-0 left-0 right-0 z-50 lg:hidden border-t border-gold/25 bg-espresso px-4 py-3 shadow-2xl">
+  <div class="flex items-center gap-3">
+    <div class="flex-1 min-w-0">
+      <div class="text-cream text-xs font-semibold truncate">Amazing Slim Caffè Macchiato</div>
+      <div class="text-gold text-sm font-bold">From ₱375/box — FREE shipping on 6 boxes</div>
+    </div>
+    <a href="#pricing" class="btn-gold flex-shrink-0 px-5 py-2.5 text-sm font-body">Order Now →</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ SCRIPTS -->
+<script>
+  // VSL video load on click
+  function loadVSL() {
+    const overlay = document.getElementById('vsl-overlay');
+    const video   = document.getElementById('vsl-video');
+    overlay.style.display = 'none';
+    video.classList.remove('hidden');
+    video.play();
+  }
+
+  // FAQ toggle
+  function toggleFaq(btn) {
+    const item   = btn.closest('.faq-item');
+    const body   = item.querySelector('.faq-body');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.faq-body').classList.remove('open');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      body.classList.add('open');
+    }
+  }
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Sticky mobile CTA
+  const stickyBar = document.getElementById('sticky-bar');
+  const showAt    = 320;
+  window.addEventListener('scroll', () => {
+    stickyBar.classList.toggle('show', window.scrollY > showAt);
+  }, { passive: true });
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
