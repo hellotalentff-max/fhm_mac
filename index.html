@@ -579,50 +579,93 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
-      <!-- Testimonial 1 -->
+
+      <!-- Testimonial 1 — krisha_caffe_mac.mp4 -->
       <div class="reveal">
-        <div class="relative mb-5 overflow-hidden rounded-2xl bg-espresso shadow-xl cursor-pointer group" style="aspect-ratio:9/16;max-height:420px">
-          <div class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-espresso/75 to-espresso">
-            <div class="text-6xl mb-5">👩‍👧</div>
-            <div class="play-btn mb-3"><svg class="w-6 h-6 text-espresso ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="relative mb-5 overflow-hidden rounded-2xl bg-espresso shadow-xl" style="aspect-ratio:9/16;max-height:420px">
+          <!-- Overlay -->
+          <div id="t1-overlay" class="absolute inset-0 z-10 flex flex-col items-center justify-center cursor-pointer group" onclick="playTestimonial(1)">
+            <div class="absolute inset-0 bg-gradient-to-b from-espresso/60 to-espresso"></div>
+            <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(200,150,60,.1) 0%,transparent 65%)"></div>
+            <div class="relative z-10 play-btn mb-3 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-espresso ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <p class="relative z-10 text-cream/50 text-xs tracking-wide">▶ Play Testimonial</p>
+            <!-- Stars bottom -->
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-espresso to-transparent">
+              <div class="text-amber-400 text-sm">★★★★★</div>
+            </div>
           </div>
-          <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-espresso to-transparent">
-            <div class="text-amber-400 text-sm">★★★★★</div>
-          </div>
+          <!-- Video -->
+          <video id="t1-video"
+            class="absolute inset-0 w-full h-full hidden object-cover"
+            src="testimonial_1.mp4"
+            controls
+            playsinline
+            preload="metadata">
+          </video>
         </div>
-        <h3 class="font-display text-lg font-bold text-espresso mb-1">Sarah, 38 — Busy Mom of 3</h3>
-        <p class="text-mocha/70 text-sm italic leading-relaxed">"I used to skip breakfast just to save time. Now my Caffè Macchiato IS my morning. 60 seconds and I'm ready to take on the day — even the school run."</p>
+        <h3 class="font-display text-lg font-bold text-espresso mb-1">Krisha — Happy Customer</h3>
+        <p class="text-mocha/70 text-sm italic leading-relaxed">"This is my go-to every morning now. The taste is incredible and I love knowing exactly what's inside. It's the one thing I actually look forward to when I wake up."</p>
       </div>
 
-      <!-- Testimonial 2 -->
+      <!-- Testimonial 2 — second uploaded video -->
       <div class="reveal">
-        <div class="relative mb-5 overflow-hidden rounded-2xl bg-espresso shadow-xl cursor-pointer group" style="aspect-ratio:9/16;max-height:420px">
-          <div class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-espresso/75 to-espresso">
-            <div class="text-6xl mb-5">👩‍💼</div>
-            <div class="play-btn mb-3"><svg class="w-6 h-6 text-espresso ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="relative mb-5 overflow-hidden rounded-2xl bg-espresso shadow-xl" style="aspect-ratio:9/16;max-height:420px">
+          <!-- Overlay -->
+          <div id="t2-overlay" class="absolute inset-0 z-10 flex flex-col items-center justify-center cursor-pointer group" onclick="playTestimonial(2)">
+            <div class="absolute inset-0 bg-gradient-to-b from-espresso/60 to-espresso"></div>
+            <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(200,150,60,.1) 0%,transparent 65%)"></div>
+            <div class="relative z-10 play-btn mb-3 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-espresso ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <p class="relative z-10 text-cream/50 text-xs tracking-wide">▶ Play Testimonial</p>
+            <!-- Stars bottom -->
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-espresso to-transparent">
+              <div class="text-amber-400 text-sm">★★★★★</div>
+            </div>
           </div>
-          <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-espresso to-transparent">
-            <div class="text-amber-400 text-sm">★★★★★</div>
-          </div>
+          <!-- Video -->
+          <video id="t2-video"
+            class="absolute inset-0 w-full h-full hidden object-cover"
+            src="testimonial_2.mp4"
+            controls
+            playsinline
+            preload="metadata">
+          </video>
         </div>
-        <h3 class="font-display text-lg font-bold text-espresso mb-1">Michelle, 44 — Marketing Director</h3>
-        <p class="text-mocha/70 text-sm italic leading-relaxed">"I was spending $35 a week on lattes. Now I make something even better at my desk in under a minute. My team thinks I have a secret coffee machine hidden somewhere."</p>
+        <h3 class="font-display text-lg font-bold text-espresso mb-1">Verified Customer</h3>
+        <p class="text-mocha/70 text-sm italic leading-relaxed">"I've tried so many coffee products but nothing compares to this. The Arabica blend is so smooth — zero bitterness — and I feel great knowing it's FDA Approved and Halal Certified."</p>
       </div>
 
-      <!-- Testimonial 3 -->
+      <!-- Testimonial 3 — placeholder, ready for next video -->
       <div class="reveal">
-        <div class="relative mb-5 overflow-hidden rounded-2xl bg-espresso shadow-xl cursor-pointer group" style="aspect-ratio:9/16;max-height:420px">
-          <div class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-espresso/75 to-espresso">
-            <div class="text-6xl mb-5">👩‍💻</div>
-            <div class="play-btn mb-3"><svg class="w-6 h-6 text-espresso ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="relative mb-5 overflow-hidden rounded-2xl bg-espresso shadow-xl" style="aspect-ratio:9/16;max-height:420px">
+          <div id="t3-overlay" class="absolute inset-0 z-10 flex flex-col items-center justify-center cursor-pointer group" onclick="playTestimonial(3)">
+            <div class="absolute inset-0 bg-gradient-to-b from-espresso/60 to-espresso"></div>
+            <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(200,150,60,.1) 0%,transparent 65%)"></div>
+            <div class="relative z-10 text-4xl mb-4 opacity-30">☕</div>
+            <div class="relative z-10 play-btn mb-3 opacity-50 cursor-not-allowed" style="animation:none">
+              <svg class="w-6 h-6 text-espresso ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <p class="relative z-10 text-cream/30 text-xs tracking-wide">Coming Soon</p>
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-espresso to-transparent">
+              <div class="text-amber-400/30 text-sm">★★★★★</div>
+            </div>
           </div>
-          <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-espresso to-transparent">
-            <div class="text-amber-400 text-sm">★★★★★</div>
-          </div>
+          <!-- REPLACE src below with testimonial_3.mp4 when ready -->
+          <video id="t3-video"
+            class="absolute inset-0 w-full h-full hidden object-cover"
+            src=""
+            controls
+            playsinline
+            preload="none">
+          </video>
         </div>
-        <h3 class="font-display text-lg font-bold text-espresso mb-1">Jess, 31 — Freelancer</h3>
-        <p class="text-mocha/70 text-sm italic leading-relaxed">"I work from different places every week. Having my sachets with me means I always start with something I love — whether I'm at a co-working space or a café in Barcelona."</p>
+        <h3 class="font-display text-lg font-bold text-espresso/40 mb-1">More Reviews Coming</h3>
+        <p class="text-mocha/30 text-sm italic leading-relaxed">"Testimonial video coming soon — upload the third video to activate this card."</p>
       </div>
+
     </div>
   </div>
 </section>
@@ -973,6 +1016,23 @@
 
 <!-- ═══════════════════════════════════════════ SCRIPTS -->
 <script>
+  // Testimonial video play — pauses other testimonials when one starts
+  function playTestimonial(n) {
+    const overlay = document.getElementById('t' + n + '-overlay');
+    const video   = document.getElementById('t' + n + '-video');
+    if (!video.src || video.src === window.location.href) return; // placeholder guard
+    // Pause siblings
+    [1,2,3].forEach(function(i) {
+      if (i !== n) {
+        const v = document.getElementById('t' + i + '-video');
+        if (v && !v.paused) v.pause();
+      }
+    });
+    overlay.style.display = 'none';
+    video.classList.remove('hidden');
+    video.play();
+  }
+
   // VSL video load on click
   function loadVSL() {
     const overlay = document.getElementById('vsl-overlay');
